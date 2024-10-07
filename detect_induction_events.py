@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import argparse
 
 def load_data(file_path):
     """Loads the abundance data from a CSV file."""
@@ -38,10 +39,14 @@ def save_results(data, output_path):
     data.to_csv(output_path, index=True)
     print(f"Results saved to {output_path}")
 
-def generate_heatmap(data, output_path="heatmap.png"):
-    """Generates a heatmap from the significant induction events and saves it as an image."""
+def generate_heatmap(input_path, output_path="heatmap.png"):
+    """Generates a heatmap from the significant induction events CSV file and saves it as an image."""
+    # Load the significant induction events from the saved CSV file
+    data = pd.read_csv(input_path, index_col=0)
+    
+    # Create the heatmap
     plt.figure(figsize=(10, 8))
-    sns.heatmap(data, cmap="YlGnBu", annot=True, fmt=".2f", cbar_kws={'label': 'Log Ratio'})
+    sns.heatmap(data.fillna(0), cmap="YlGnBu", annot=True, fmt=".2f", cbar_kws={'label': 'Log Ratio'})
     plt.title("Significant Induction Events Heatmap")
     plt.xlabel("Phages")
     plt.ylabel("Samples")
@@ -50,18 +55,27 @@ def generate_heatmap(data, output_path="heatmap.png"):
     print(f"Heatmap saved to {output_path}")
     plt.show()
 
-def main(file_path, output_path, threshold=1, heatmap_path="heatmap.png"):
+def main(input_file, output_file, threshold=1, heatmap_file="heatmap.png"):
     """Main function to run the induction event detection process."""
-    abundance_data = load_data(file_path)
+    abundance_data = load_data(input_file)
     log_data = log_transform(abundance_data)
     coverage_ratios = calculate_coverage_ratios(log_data)
     significant_events = identify_induction_events(coverage_ratios, threshold)
-    save_results(significant_events, output_path)
+    save_results(significant_events, output_file)
     
-    # Generate heatmap if there are any significant events
-    if not significant_events.empty:
-        generate_heatmap(significant_events.fillna(0), heatmap_path)
+    # Generate heatmap based on the saved CSV file for significant induction events
+    generate_heatmap(output_file, heatmap_file)
 
 if __name__ == "__main__":
-    # Replace 'abundance_data.csv' and 'significant_induction_events.csv' with your actual file paths
-    main('abundance_data.csv', 'significant_induction_events.csv', threshold=1)
+    # Set up argument parsing for input parameters
+    parser = argparse.ArgumentParser(description="Detect and visualize induction events between MAGs and phages.")
+    parser.add_argument('--input', type=str, required=True, help="Path to the input CSV file with abundance data.")
+    parser.add_argument('--output', type=str, default='significant_induction_events.csv', help="Path to save the significant induction events CSV file.")
+    parser.add_argument('--threshold', type=float, default=1, help="Threshold for detecting induction events.")
+    parser.add_argument('--heatmap', type=str, default='heatmap.png', help="Path to save the heatmap image.")
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Run the main function with parsed arguments
+    main(args.input, args.output, args.threshold, args.heatmap)
