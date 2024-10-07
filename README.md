@@ -20,6 +20,22 @@ The script follows these main steps:
 5. **Heatmap Generation**  
    The script generates a heatmap of the significant induction events, visually representing the log-transformed ratios of phage to host abundance. This helps to quickly identify patterns of induction across samples and phages. The heatmap is saved as a PNG file.
 
+##Example Data
+Below is an example of the input data format expected by the script:
+
+| H_V          | BL_a      | BL_b      | BL_c      | PE_a      | PE_b      | PE_c      | PVC_a     | PVC_b     | PVC_c     | DP_a        | DP_b       | DP_c       |
+|--------------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|-------------|------------|------------|
+| M_sp.upd101  | 0.00155   | 0.00523   | 0.00572   | 0.00163   | 0.00458   | 0.00264   | 0.00165   | 0.00187   | 0.00340   | 32.24074    | 20.84618   | 20.84618   |
+| V_sp.upd101_1| 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 304.03882   | 557.16807  | 557.16807  |
+| V_sp.upd101_2| 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0           | 122.70457  | 122.70457  |
+| M_sp.upd105  | 0.01631   | 0.00071   | 0.00257   | 0.00047   | 0.00415   | 0.00536   | 0.00445   | 0.00592   | 0.00056   | 0.01382     | 0.64066    | 0.64066    |
+| V_sp.upd105_1| 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0           | 138.5803   | 138.5803   |
+| V_sp.upd105_2| 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 0         | 92.3078     | 127.48879  | 127.48879  |
+
+- **MAG Rows (`M_`)**: Represent the relative abundance of the host MAG.
+- **Phage Rows (`V_`)**: Represent the RPKM values for corresponding phages.
+- **Conditions**: Each treatment (e.g., BL, PE, PVC, DP) has three replicates (`_a`, `_b`, `_c`).
+  
 ## Requirements
 
 To use this script, you’ll need Python installed with the following packages:
@@ -27,6 +43,7 @@ To use this script, you’ll need Python installed with the following packages:
 - `pandas`
 - `seaborn`
 - `matplotlib`
+  
 
 You can install the dependencies with:
 ```bash
