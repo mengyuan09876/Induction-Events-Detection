@@ -20,7 +20,7 @@ The script follows these main steps:
 5. **Heatmap Generation**  
    The script generates a heatmap of the significant induction events, visually representing the log-transformed ratios of phage to host abundance. This helps to quickly identify patterns of induction across samples and phages. The heatmap is saved as a PNG file.
 
-##Example Data
+## Example Data
 Below is an example of the input data format expected by the script:
 
 | H_V          | BL_a      | BL_b      | BL_c      | PE_a      | PE_b      | PE_c      | PVC_a     | PVC_b     | PVC_c     | DP_a        | DP_b       | DP_c       |
