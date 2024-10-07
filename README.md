@@ -13,13 +13,13 @@ The script follows these main steps:
    For each host MAG and its corresponding phage (identified by matching identifiers), the log-transformed host abundance is subtracted from the log-transformed phage abundance to produce a log-transformed fold-change value. This step highlights changes in phage activity relative to the host.
 
 3. **Threshold Application**  
-   A threshold of `1` is applied to define significant induction events. A log-difference of \( \geq 1 \) indicates that the phage abundance is approximately 2.7 times higher than the host abundance. This criterion is used to distinguish true induction events from background variability, particularly under stress conditions like Diethyl Phthalate (DP) treatment.
+   A threshold of `1` is applied to define significant induction events. A log-difference of \( \geq 1 \) indicates that the phage abundance is approximately 2.7 times higher than the host abundance. This criterion is used to distinguish true induction events from background variability, particularly under stress conditions like Diethyl Phthalate (DP) treatment. For more details, see the Supplementary Information (SI).
 
 4. **Export Results**  
    Significant events that meet or exceed the threshold are exported to a CSV file for further analysis, allowing for easy integration with other bioinformatics pipelines or data visualization tools.
 
 5. **Heatmap Generation**  
-   The script can generate a heatmap of the significant induction events, which visually represents the log-transformed ratios of phage to host abundance. This helps quickly identify patterns of induction across samples and phages. The heatmap is saved as a PNG file.
+   The script generates a heatmap of the significant induction events, visually representing the log-transformed ratios of phage to host abundance. This helps to quickly identify patterns of induction across samples and phages. The heatmap is saved as a PNG file.
 
 ## Requirements
 
@@ -31,4 +31,4 @@ To use this script, you’ll need Python installed with the following packages:
 
 You can install the dependencies with:
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt   
