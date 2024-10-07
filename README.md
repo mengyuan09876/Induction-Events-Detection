@@ -12,7 +12,7 @@ The script follows these main steps:
 2. **Coverage Ratio Calculation**  
    For each host MAG and its corresponding phage (identified by matching identifiers), the log-transformed host abundance is subtracted from the log-transformed phage abundance to produce a log-transformed fold-change value. In this context, **phage abundances are provided as RPKM values**, while **host abundances are represented as relative abundances**. 
 3. **Threshold Application**  
-   A threshold of `1` is applied to define significant induction events. A log-difference of \( \geq 1 \) indicates that the phage abundance is approximately 2.7 times higher than the host abundance. This criterion is used to distinguish true induction events from background variability, particularly under stress conditions like Diethyl Phthalate (DP) treatment. For more details, see the Supplementary Information (SI).
+   A threshold of `1` is applied to define significant induction events. A log-difference of \( \geq 1 \) indicates that the phage abundance is approximately 2.7 times higher than the host abundance. This criterion is used to distinguish true induction events from background variability.
 
 4. **Export Results**  
    Significant events that meet or exceed the threshold are exported to a CSV file for further analysis, allowing for easy integration with other bioinformatics pipelines or data visualization tools.
