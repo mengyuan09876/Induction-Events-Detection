@@ -10,7 +10,7 @@ The script follows these main steps:
    Abundance values are log-transformed to the form \(\log(\text{value} + 1)\) to handle zeros and small values effectively, preparing the data for reliable ratio calculation.
 
 2. **Coverage Ratio Calculation**  
-   For each host MAG and its corresponding phage (identified by matching identifiers), the log-transformed host abundance is subtracted from the log-transformed phage abundance to produce a log-transformed fold-change value. This step highlights changes in phage activity relative to the host.
+   For each host MAG and its corresponding phage (identified by matching identifiers), the log-transformed host abundance is subtracted from the log-transformed phage abundance to produce a log-transformed fold-change value. In this context, **phage abundances are provided as RPKM values**, while **host abundances are represented as relative abundances**. This step highlights changes in phage activity relative to the host.
 
 3. **Threshold Application**  
    A threshold of `1` is applied to define significant induction events. A log-difference of \( \geq 1 \) indicates that the phage abundance is approximately 2.7 times higher than the host abundance. This criterion is used to distinguish true induction events from background variability, particularly under stress conditions like Diethyl Phthalate (DP) treatment. For more details, see the Supplementary Information (SI).
@@ -31,4 +31,4 @@ To use this script, you’ll need Python installed with the following packages:
 
 You can install the dependencies with:
 ```bash
-pip install -r requirements.txt   
+pip install -r requirements.txt
